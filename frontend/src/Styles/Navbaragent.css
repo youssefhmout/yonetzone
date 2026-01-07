@@ -1,0 +1,87 @@
+
+.navagent {
+    background-color: #def9de; 
+    height: 100vh; 
+    width: 220px;
+    border-top-right-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    position: relative;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 0px 0px 3px #70BF48;
+
+}
+
+.navagent h3 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #49296C;
+    margin-bottom: 25px;
+}
+
+
+.navagent a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #49296C; 
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+}
+
+.navagent a:hover {
+    background-color: #70BF48;
+    color: #fff;
+}
+
+.clients {
+    cursor: pointer;
+}
+
+
+.navagent div > div {
+    margin-left: 15px;
+    margin-top: 3px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px; 
+}
+
+.navagent div > div a {
+    padding: 4px 8px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    color: #49296C;
+}
+
+.navagent div > div a:hover {
+    background-color: #49296C;
+    color: #fff;
+}
+
+#Deconnexion {
+    position: absolute;
+    bottom: 50px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background-color: #de0e0e;  
+    color: #fff;              
+    text-decoration: none;     
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+#Deconnexion:hover {
+    background-color: #70BF48; 
+    color: #fff;                
+}
