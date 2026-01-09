@@ -1,0 +1,71 @@
+.Ajouterclient {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.Ajouterclient .container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: rgba(44, 103, 67, 0.295);
+  height: 100vh;
+  width: 100%;
+  gap: 30px;
+}
+.container .elements {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+.container .elements .content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.content label  {
+  font-size: 18px;
+  font-weight: 600;
+  color: #3d3c3c;
+  margin-top: 10px ;
+}
+.content input, .content select {
+  width: 250px;
+  height: 35px;
+  border-radius: 8px;
+  outline: none;
+  border:  none;
+  padding: 0 10px;
+  font-size: 14px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.content input:focus, .content select:focus {
+  box-shadow: 0 0 5px rgb(81, 238, 157);
+  border: 1px solid rgb(81, 238, 125);
+}
+.Ajouterbtn{
+  margin-top: 33px;
+  font-weight: 600;
+  font-size: 17px;
+  width: 250px;
+  height: 35px;
+    border-radius: 8px;
+  background-color: rgb(39, 142, 79);
+  color: white;
+  transition: 0.5s;
+  border: none;
+}
+.Ajouterbtn:hover {
+  background-color: rgb(93, 154, 109);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+.Ajouterclient .title {
+  font-size: 27px;
+  font-weight: 700;
+  color: #00543f;
+  margin-top: 20px;
+}

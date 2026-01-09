@@ -1,0 +1,69 @@
+* {
+    box-sizing: border-box;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(48, 22, 72);
+
+    width: clamp(300px, 18vw, 320px);
+    height: 100vh;
+
+    gap: 10px;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+/* image section */
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(178, 178, 178, 0.274);
+    padding: 15px 0;
+}
+
+/* links */
+.nav a {
+    width: 100%;
+    padding: 12px;
+    font-size: clamp(14px, 1vw, 17px);
+    font-weight: 600;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: rgba(240, 248, 255, 0.717);
+    text-decoration: none;
+
+    border-left: 3px solid transparent;
+    transition: 0.3s ease;
+}
+
+.nav a:hover ,  .nav a.active {
+    border-left: 3px solid  rgb(43, 226, 110);
+    background-color: rgba(43, 226, 110, 0.349);
+    color: aliceblue;
+}
+
+/* Deconnexion button */
+#Deconnexion {
+    margin-top: auto;
+    width: 100%;
+    padding: 12px;
+
+    background-color: rgba(255, 0, 0, 0.705);
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    transition: 0.3s ease;
+}
+
+#Deconnexion:hover {
+    background-color: rgba(255, 0, 0, 0.6);
+    border-left: 3px solid  rgb(255, 255, 255);
+}

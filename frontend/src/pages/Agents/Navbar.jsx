@@ -1,36 +1,40 @@
-import React from 'react';
-import { IoMdMenu } from "react-icons/io";
+import React from "react";
+import yonetzone from "../../assets/yonetzone1.png";
+import { AiFillHome } from "react-icons/ai";
 import { FaUserGroup } from "react-icons/fa6";
-import { SlArrowDown } from "react-icons/sl";
-import { SlArrowUp } from "react-icons/sl";
 import { LuLogOut } from "react-icons/lu";
-import "../../Styles/Navbaragent.css";
+import { BsFillPersonPlusFill } from "react-icons/bs";
+import { IoCalendarSharp } from "react-icons/io5";
+import { RiPassExpiredFill } from "react-icons/ri";
 
-import { useState } from 'react';
+import { useLocation } from "react-router-dom";
+import "../../Styles/agent/Navbaragent.css";
 
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
-    const [closeclients , setcloseclients]=useState(true)
+  const location = useLocation();
   return (
-    <nav className='navagent'>
-        <h3>yonetzone</h3>
+    <nav className="nav">
+      <div className="image">
+        <img src={yonetzone} alt="logo" style={{ width: "60px" }} />
+      </div>
 
-        <a href="#" className='tableau'><IoMdMenu />TableauDebord</a> 
-        <div>
-        <a href="#" className='clients'  onClick={()=>setcloseclients(!closeclients)}><FaUserGroup/> Clients {closeclients ? <SlArrowDown/> : <SlArrowUp/> }</a> <br />
-            {!closeclients && (
-                <div>
-                    <a href="#">Tous les clients</a> <br />
-                    <a href="#">Ajouter un client</a> <br />
-                    <a href="#">Abonnements bientot expirés</a> <br />
-                    <a href="#">Abonnements expirés</a>
-                </div>
-            )}              
-        </div>
+      <Link to="/agent/TableauDebord" className={location.pathname === "/agent/TableauDebord" ? "active" : ""}>
+        <AiFillHome />
+        Tableau de Bord
+      </Link>
+      <Link to="/agent/clients" className={location.pathname === "/agent/clients" ? "active" : ""}>
+        <FaUserGroup /> Clients
+      </Link>
+      <Link to="/agent/Ajouterclient" className={location.pathname === "/agent/Ajouterclient" ? "active" : ""}><BsFillPersonPlusFill />Ajouter un client</Link>
+      <Link to="/agent/bientot_expires" className={location.pathname === "/agent/bientot_expires" ? "active" : ""}><IoCalendarSharp />Abonnements bientot expirés</Link>
+      <Link to="/agent/expires" className={location.pathname === "/agent/expires" ? "active" : ""}><RiPassExpiredFill />Abonnements expirés</Link>
 
-
-        <a href="#" id='Deconnexion'><LuLogOut/> Déconnexion</a>
-
+      <a href="#" id="Deconnexion">
+        <LuLogOut /> Déconnexion
+      </a>
     </nav>
-  )
+  );
 }

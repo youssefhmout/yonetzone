@@ -1,0 +1,16 @@
+.clients{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.clients .container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: rgba(44, 103, 67, 0.295);
+  height: 100vh;
+  width: 100%;
+  gap: 30px;
+}
