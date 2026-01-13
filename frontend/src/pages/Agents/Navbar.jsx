@@ -12,7 +12,6 @@ import "../../Styles/agent/Navbaragent.css";
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
 export default function Navbar() {
   const location = useLocation();
   return (
@@ -33,7 +32,7 @@ export default function Navbar() {
       <Link to="/agent/expires" className={location.pathname === "/agent/expires" ? "active" : ""}><RiPassExpiredFill />Abonnements expirés</Link>
 
       <a href="#" id="Deconnexion">
-        <LuLogOut /> Déconnexion
+        <LuLogOut />Déconnexion
       </a>
     </nav>
   );

@@ -1,53 +1,56 @@
-import React, { useEffect } from "react";
+import { IoMdWarning } from "react-icons/io";
+import React, { use, useEffect } from "react";
 import Navbar from "./Navbar";
 import "../../Styles/agent/Ajouterclient.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export default function Ajouterclient() {
-  const [nom, setNom] = useState("");
-  const [nomSociete, setNomSociete] = useState("");   
-  const [email, setEmail] = useState("");
-  const [telephone, setTelephone] = useState("");
-  const [dateDebut, setDateDebut] = useState("");   
-  const [typeAbonnement, setTypeAbonnement] = useState("mensuel");
-  const [prix, setPrix] = useState("");
-  const [prixSuivant, setPrixSuivant] = useState("");
-  const [duree, setDuree] = useState(null);
+    const navigate = useNavigate();
+    const { id } = useParams();
+
+    const [loading , setLoading] = useState(true);
+
+    const [nom, setNom] = useState("");
+    const [nomSociete, setNomSociete] = useState("");   
+    const [email, setEmail] = useState("");
+    const [telephone, setTelephone] = useState("");
+    const [dateDebut, setDateDebut] = useState("");   
+    const [typeAbonnement, setTypeAbonnement] = useState("mensuel");
+    const [prix, setPrix] = useState("");
+    const [prixSuivant, setPrixSuivant] = useState("");
+    const [duree, setDuree] = useState(null);
 
 
+    useEffect(() => {
+        setLoading(true);
+        const token = localStorage.getItem("Token");
+        fetch(`http://127.0.0.1:8000/api/agent/client/${id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",     
+                "Authorization": `Bearer ${token}`
+            }
+        })  .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            setNom(data.client.nom_complet);
+            setNomSociete(data.client.nom_societe);
+            setEmail(data.client.email);
+            setTelephone(data.client.telephone);
+            setDateDebut(data.client.date_debut);
+            setTypeAbonnement(data.client.type_abonnement);
+            setPrix(data.client.prix);
+            setPrixSuivant(data.client.prix_suivant);
+            setDuree(data.client.duree);
+            setLoading(false);
+        })
+        .catch(error => {
+            console.error("Error fetching client data:", error);
+        });
+    }, [id]);
 
-  const Handlesubmit=(e)=>{
-    e.preventDefault();
-    const token = localStorage.getItem("Token");
-    fetch("http://127.0.0.1:8000/api/agent/ajouterclient", {
-      method: "POST",
-      headers: {  
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      },
-      body: JSON.stringify({
-        nom_complet:nom,
-        nom_societe :nomSociete,
-        email :email,
-        telephone:telephone,
-        date_debut : dateDebut,
-        type_abonnement :typeAbonnement,
-        prix :prix,
-        prix_suivant :prixSuivant,
-        duree :duree
-      })
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log("Client ajouté avec succès:", data);
-      alert("Client ajouté avec succès !");
-    })
-    .catch(error => {
-      console.error("Erreur lors de l'ajout du client:", error);
-      alert("Erreur lors de l'ajout du client.");
-    });
-  };
 
 
 
@@ -56,8 +59,13 @@ export default function Ajouterclient() {
     <article className="Ajouterclient">
       <Navbar />
       <div className="container">
-        <h1 className="title">Ajouter un client</h1>
-        <form className="formajouterclient" onSubmit={Handlesubmit}>
+        <h1 className="title">Modifier un client</h1>
+        {loading ? <p>Loading client data...</p>: (
+        <>
+        <div className="warning" style={{'color':'red'}}>
+          <p> <IoMdWarning className="icon" /> Attention  le prix suivant est : {prixSuivant} dh</p>
+        </div>
+        <form className="formajouterclient" >
           <div className="elements">
             <div className="content">
               <label>Nom complet :</label>
@@ -129,12 +137,15 @@ export default function Ajouterclient() {
             <div className="content">
 
                 <button type="submit" className="Ajouterbtn">
-                    Ajouter le client
+                    Modifier le client
                 </button>
 
             </div>
           </div>
         </form>
+        </>
+        )}
+
       </div>
     </article>
   );

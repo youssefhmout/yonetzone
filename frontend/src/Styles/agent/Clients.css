@@ -3,6 +3,7 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    position: relative;
 }
 .clients .container{
   display: flex;
@@ -13,4 +14,177 @@
   height: 100vh;
   width: 100%;
   gap: 30px;
+}
+.search{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  border: 2px solid rgba(13, 124, 78, 0.918);
+  border-radius: 25px;
+
+}
+.search input{
+  padding: 8px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  width: 250px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: rgb(13, 124, 78);
+}
+.search .icon{
+  padding: 3px 12px;
+  border: none;
+  outline: none;
+  background-color:transparent;
+  color:  rgba(13, 124, 78, 0.797);
+}
+
+.clients .container .table{
+  border-spacing: 0px;
+  width: 90%;
+  height: auto;
+  border-radius: 15px;
+  overflow: hidden;
+  animation: view 1s ease-out forwards;
+}
+@keyframes view {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    opacity : 1;
+    transform: scale(1);
+  }
+}
+.table th, .table td{
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  width: fit-content;
+  padding: 8px 12px;
+}
+.table th {
+  background-color: rgb(44, 108, 83);
+  color: rgb(201, 201, 201);
+  font-weight: 700;
+}
+.table tr:nth-child(odd) {
+  background: rgb(196, 214, 207);
+  color: rgb(0, 101, 54);
+  font-weight: 600;
+}
+
+.table tr:nth-child(even) {
+  background: rgb(154, 192, 176);
+  color: rgb(0, 82, 44);
+  font-weight: 600;
+} 
+.table .actions{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 10px;
+}
+.table .actions .edit{
+  background-color: rgba(41, 167, 114, 0.384);
+  padding: 4px 8px;
+  border-radius: 5px;
+}
+.table .actions .edit a{
+  color: rgb(8, 165, 92);
+}
+
+.table .actions .visibility{
+  background-color: rgba(81, 138, 209, 0.534);
+  padding: 4px 8px;
+  border-radius: 5px;
+}
+.table .actions .visibility a{
+  color: rgb(25, 54, 161);
+}
+.table .Actif{
+  color: rgb(0, 128, 81);
+  background-color: rgba(0, 128, 58, 0.306);
+  font-weight: 700;
+  padding: 3px 15px;
+  border-radius: 10px;
+  width: fit-content;
+}
+.table .Inactif{
+  color: rgb(159, 7, 7);
+  background-color: rgba(255, 0, 0, 0.253);
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+
+/* Modal Client Details */
+.modalclient{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modalclient .modalcontent{
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 50%;
+  max-width: 600px;
+  position: relative;
+}
+.modalclient .modalcontent .closebtn{
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ef0404dd;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+.modalclient .modalcontent .closebtn:hover{
+  color: #6a0101;
+}
+.modalclient .modalcontent h2{
+  text-align: center;
+  margin-bottom: 20px;
+  color: rgb(13, 124, 78);
+}
+.modalclient .modalcontent .modalclientdetails{
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: rgb(0, 51, 26);
+}
+.modalclient .modalcontent .modalclientdetails strong{
+  font-weight: 600;
+  color: rgb(13, 124, 78);
+}
+.modalclient  a {
+  text-decoration: none;
+  color: rgb(0, 0, 138);
+}
+
+.modalclient .editlink{
+  margin-top: 15px;
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: #30164861;
+  border-radius: 5px;
+  color:#301648;
+  font-weight: 600;
+}
+.modalclient .editlink:hover{
+  background-color:#26123987;
 }
