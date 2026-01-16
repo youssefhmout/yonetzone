@@ -17,7 +17,7 @@ const handleSubmit = async (e) => {
       e.preventDefault();
       setLoading(true);
       try {
-        const response = await fetch('http://localhost:8000/api/agent/connexion', {
+        const response = await fetch('http://localhost:8000/api/connexion', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password })

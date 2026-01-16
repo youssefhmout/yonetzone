@@ -10,44 +10,68 @@ use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
-    public function store(Request $request)
+    public function Store(Request $request)
     {
         $request->validate([
             'nom_complet' => 'required|string',
             'nom_societe' => 'required|string',
             'email' => 'required|email|unique:clients,email',
             'telephone' => 'required',
-            'prix' => 'required|numeric',
-            'prix_suivant' => 'required|numeric',
-            'type_abonnement' => 'required|in:mensuel,annuel',
-            'duree' => 'required|integer|min:1',
-            'date_debut' => 'required|date',
         ]);
-
-        $date_debut = Carbon::parse($request->date_debut);
-
-        $date_fin = $request->type_abonnement === 'mensuel'
-            ? $date_debut->copy()->addMonths((int)$request->duree)
-            : $date_debut->copy()->addYears((int)$request->duree);
-
         $client = Client::create([
             'user_id' => Auth::id(),
             'nom_complet' => $request->nom_complet,
             'nom_societe' => $request->nom_societe,
             'email' => $request->email,
-            'telephone' => $request->telephone,
-            'date_debut' => $date_debut,
-            'date_fin' => $date_fin,
-            'type_abonnement' => $request->type_abonnement,
-            'duree' => $request->duree,
-            'prix' => $request->prix,
-            'prix_suivant' => $request->prix_suivant,
+            'telephone' => $request->telephone
         ]);
 
         return response()->json([
             'message' => 'Client created successfully',
             'client' => $client
         ], 201);
+    }
+    public function Update(Request $request, $id)
+    {
+        $request->validate([
+            'nom_complet' => 'sometimes|required|string',
+            'nom_societe' => 'sometimes|required|string',
+            'email' => 'required|email|unique:clients,email,' . $id,
+            'telephone' => 'sometimes|required',
+        ]);
+
+        $userId = Auth::id();
+        $client = Client::where('id', $id)->where('user_id', $userId)->first();
+
+        if (!$client) {
+            return response()->json([
+                'message' => 'Client not found'
+            ], 404);
+        }
+
+        $client->update($request->only(['nom_complet', 'nom_societe', 'email', 'telephone']));
+
+        return response()->json([
+            'message' => 'Client updated successfully',
+            'client' => $client
+        ], 200);
+    }
+    public function delete($id)
+    {
+        $userId = Auth::id();
+        $client = Client::where('id', $id)->where('user_id', $userId)->first();
+
+        if (!$client) {
+            return response()->json([
+                'message' => 'Client not found'
+            ], 404);
+        }
+
+        $client->delete();
+
+        return response()->json([
+            'message' => 'Client deleted successfully'
+        ], 200);
     }
 
     public function clientsByUser()
@@ -74,6 +98,14 @@ class ClientController extends Controller
         return response()->json([
             'message' => 'Client retrieved successfully',
             'client' => $client
+        ], 200);
+    }
+
+    public function testtoken(Request $request)
+    {
+        return response()->json([
+            'message' => 'Token is valid',
+            'user' => $request->user()
         ], 200);
     }
 }

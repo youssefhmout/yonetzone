@@ -6,14 +6,16 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaSearch } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
-import { MdVisibility } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 import Modalclient from './Modalclient';
+import Modalsupprimer from './Modalsupprimer';
 export default function Clients() {
   const [clients, setClients] = useState([]);
   const [search , setSearch] = useState("");
   const [ModalclientOpen , setModalclientOpen] = useState(false);
   const [client , setClient] = useState(null);
   const [loading , setLoading] = useState(true);
+  const [modalesupprimer , setmodalesupprimer] = useState(false);
 
 
   useEffect(() => {
@@ -34,13 +36,12 @@ export default function Clients() {
     .catch(error => {
       console.error("Erreur lors de la récupération des clients:", error);
     });
-  }, []);
+  }, [ModalclientOpen , modalesupprimer]);
 
   const filteredClients = clients.filter((client) =>
     client.nom_complet.toLowerCase().includes(search.toLowerCase()) ||
     client.nom_societe.toLowerCase().includes(search.toLowerCase()) ||
-    client.telephone.toLowerCase().includes(search.toLowerCase()) ||
-    client.type_abonnement.toLowerCase().includes(search.toLowerCase())
+    client.telephone.toLowerCase().includes(search.toLowerCase())
   );
   return (
     <article className='clients'>
@@ -62,9 +63,7 @@ export default function Clients() {
                         <th>Nom Complet</th>
                         <th>Société</th>
                         <th>Téléphone</th>
-                        <th>Type d'abonnement</th>
-                        <th>Date de fin</th>
-                        <th>Statut</th>
+                        <th>Email</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -74,20 +73,26 @@ export default function Clients() {
                             <td>{client.nom_complet}</td>
                             <td>{client.nom_societe}</td>
                             <td>{client.telephone}</td>
-                            <td>{client.type_abonnement}</td>
-                            <td>{client.date_fin}</td>
-                            <td ><div className={new Date(client.date_fin) > new Date() ? "Actif" : "Inactif"}>{new Date(client.date_fin) > new Date() ? "Active" : "Inactive"}</div></td>
+                            <td>{client.email}</td>
                             <td className='actions'>
                               <div className='edit'>
-                                  <Link to={`/agent/ModifierClient/${client.id}`}><FaEdit /></Link>
-                              </div>
-                              <div className='visibility'>
                                   <a href="#" onClick={(e) =>{
                                       e.preventDefault();
                                       setModalclientOpen(true);
                                       setClient(client);
                                     }}
-                                  ><MdVisibility /></a>
+                                  ><FaEdit /></a>
+                              </div>
+                              <div className='deleteclient'>
+                                  <a href="#" onClick={(e) => {
+                                      e.preventDefault();
+                                      setClient(client);
+                                      setmodalesupprimer(true);
+
+                                    } }>
+                                    <MdDelete />
+                                </a>
+
                               </div>
                               </td>
                         </tr>
@@ -103,6 +108,14 @@ export default function Clients() {
                 </div>
               </div>
             )}
+          {/* End Modal Client Details */}
+          {/* Modal Supprimer Client */}
+          {modalesupprimer && (
+            <div className='modalesupprimer'>
+              <Modalsupprimer client={client} setmodalesupprimer={setmodalesupprimer} />
+            </div>
+          )}
+          {/* End Modal Supprimer Client */}
         </section>
     </article>
   )

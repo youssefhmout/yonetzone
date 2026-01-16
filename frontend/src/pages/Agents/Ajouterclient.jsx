@@ -9,11 +9,6 @@ export default function Ajouterclient() {
   const [nomSociete, setNomSociete] = useState("");   
   const [email, setEmail] = useState("");
   const [telephone, setTelephone] = useState("");
-  const [dateDebut, setDateDebut] = useState("");   
-  const [typeAbonnement, setTypeAbonnement] = useState("mensuel");
-  const [prix, setPrix] = useState("");
-  const [prixSuivant, setPrixSuivant] = useState("");
-  const [duree, setDuree] = useState(null);
 
 
 
@@ -30,12 +25,7 @@ export default function Ajouterclient() {
         nom_complet:nom,
         nom_societe :nomSociete,
         email :email,
-        telephone:telephone,
-        date_debut : dateDebut,
-        type_abonnement :typeAbonnement,
-        prix :prix,
-        prix_suivant :prixSuivant,
-        duree :duree
+        telephone:telephone
       })
     })
     .then(response => response.json())
@@ -58,9 +48,8 @@ export default function Ajouterclient() {
       <div className="container">
         <h1 className="title">Ajouter un client</h1>
         <form className="formajouterclient" onSubmit={Handlesubmit}>
-          <div className="elements">
             <div className="content">
-              <label>Nom complet :</label>
+              <label>Nom complet :</label> <br />
               <input
                 value={nom}
                 type="text"
@@ -69,7 +58,7 @@ export default function Ajouterclient() {
               />
             </div>
             <div className="content">
-              <label>Nom société :</label>
+              <label>Nom société :</label> <br />
               <input
                 value={nomSociete}
                 type="text"
@@ -77,14 +66,12 @@ export default function Ajouterclient() {
                 onChange={(e)=>setNomSociete(e.target.value)}
               />
             </div>
-          </div>
-          <div className="elements">
             <div className="content">
-              <label>Email :</label>
+              <label>Email :</label> <br />
               <input type="email" placeholder="Email du client" value={email} onChange={(e)=>setEmail(e.target.value)} />
             </div>
             <div className="content">
-              <label>Téléphone :</label>
+              <label>Téléphone :</label> <br /> 
               <input
                 type="tel"
                 placeholder="Téléphone du client"
@@ -92,48 +79,10 @@ export default function Ajouterclient() {
                 value={telephone}
               />
             </div>
-          </div>
-          <div className="elements">
-            <div className="content">
-              <label htmlFor="">date debut abonnement :</label>
-              <input type="date" value={dateDebut} onChange={(e)=>setDateDebut(e.target.value)} />
-            </div>
-            <div className="content">
-              <label htmlFor="">Type d'abonnement :</label>
-              <select name="type_abonnement" value={typeAbonnement} onChange={(e)=>setTypeAbonnement(e.target.value)}>
-                <option value="mensuel">Mensuel</option>
-                <option value="annuel">Annuel</option>
-              </select>
-            </div>
-          </div>
-          <div className="elements">
-            <div className="content">
-              <label htmlFor="">Prix actuel :</label>
-              <input type="number" value={prix} placeholder="Prix actuel" onChange={(e)=>setPrix(e.target.value)} />
-            </div>
-            <div className="content">
-              <label htmlFor="">Prix suivant :</label>
-              <input
-                type="number"
-                onChange={(e)=>setPrixSuivant(e.target.value)}
-                value={prixSuivant}
-                placeholder="Prix suivant"
-              />
-            </div>
-          </div>
-          <div className="elements">
-            <div className="content">
-                <label htmlFor="">Durée : </label>
-                <input type="number" value={duree} placeholder="Durée de l'abonnement" onChange={(e)=>setDuree(e.target.value)} />
-            </div>
-            <div className="content">
 
                 <button type="submit" className="Ajouterbtn">
                     Ajouter le client
                 </button>
-
-            </div>
-          </div>
         </form>
       </div>
     </article>
