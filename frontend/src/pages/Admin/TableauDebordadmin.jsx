@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from './Navbar' ;
 import "../../Styles/agent/Tableauagent.css";
 
-export default function TableauDebord() {
+export default function TableauDebordadmin() {
   return (
    <article className='tableaudebord'>
    <Navbar/>

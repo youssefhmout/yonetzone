@@ -4,6 +4,7 @@ import { AiFillHome } from "react-icons/ai";
 import { FaUserGroup } from "react-icons/fa6";
 import { LuLogOut } from "react-icons/lu";
 import { BsFillPersonPlusFill } from "react-icons/bs";
+import { FaUsers } from "react-icons/fa";
 import { IoCalendarSharp } from "react-icons/io5";
 import { RiPassExpiredFill } from "react-icons/ri";
 import { MdAssignmentAdd } from "react-icons/md";
@@ -27,7 +28,7 @@ export default function Navbar() {
         Tableau de Bord
       </Link>
       <Link to="/admin/agents" className={location.pathname === "/admin/agents" ? "active" : ""}><FaUserGroup /> Agents</Link>
-      <Link to="/admin/Ajouter/agent" className={location.pathname === "/admin/Ajouter/agent" ? "active" : ""}><BsFillPersonPlusFill />Ajouter un agent</Link>
+      <Link to="/admin/agent/Ajouter" className={location.pathname === "/admin/agent/Ajouter" ? "active" : ""}><BsFillPersonPlusFill />Ajouter un agent</Link>
       <Link to="/admin/clients" className={location.pathname === "/admin/clients" ? "active" : ""}>
         <FaUserGroup /> Clients
       </Link>

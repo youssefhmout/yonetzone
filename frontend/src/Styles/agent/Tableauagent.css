@@ -51,7 +51,6 @@
 }
 
 .carte-stat {
-    background: white;
     border-radius: 12px;
     padding: 25px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -59,6 +58,7 @@
     align-items: center;
     gap: 20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: white;
 }
 
 .carte-stat:hover {
@@ -74,13 +74,12 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: rgba(44, 103, 67, 0.1);
 }
 
-.revenus-total .carte-icone { background: rgba(255, 193, 7, 0.2); color: #ffc107; }
-.clients-total .carte-icone { background: rgba(33, 150, 243, 0.2); color: #2196f3; }
-.revenus-annuels .carte-icone { background: rgba(76, 175, 80, 0.2); color: #4caf50; }
-.clients-annuels .carte-icone { background: rgba(156, 39, 176, 0.2); color: #9c27b0; }
+.revenus-total .carte-icone { color: #ffffff; }
+.clients-total .carte-icone {  color: #ffffff; }
+.revenus-annuels .carte-icone { color: #ffffff; }
+.clients-annuels .carte-icone { color: #ffffff; }
 
 .carte-contenu {
     flex: 1;
@@ -88,28 +87,18 @@
 
 .carte-contenu h3 {
     margin: 0 0 10px 0;
-    color: #333;
-    font-size: 1.2rem;
+    color: #ffffff;
+    font-size: 2rem;
 }
 
 .carte-valeur {
     font-size: 2rem;
     font-weight: bold;
     margin: 10px 0;
-    color: #2c6743;
+    color: #ffffff;
 }
 
-.carte-sousinfo {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    font-size: 0.9rem;
-    color: #666;
-}
 
-.carte-sousinfo span {
-    display: block;
-}
 
 /* Contrôles du graphique */
 .graphique-controls {
@@ -355,6 +344,7 @@
 /* ⏳ Expiring soon */
 .abonnements-bientot {
   background: linear-gradient(135deg, #ea580c, #fb923c);
+  
 }
 
 /* ICONES */
@@ -364,7 +354,7 @@
 }
 
 .carte-contenu h3 {
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   opacity: 0.9;
 }
 
