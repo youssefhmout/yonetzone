@@ -101,14 +101,23 @@ export default function Ajouterabonnements() {
             <h1>Ajouter un abonnement</h1>
             {step === 1 && (
                 <div className="card">
-                    <h2>Étape 1 : Sélectionner le client</h2>
-                    <label htmlFor="">Sélectionner un client :</label>
-                    <select onChange={(e)=>setClient(e.target.value)}>
-                        {loading ? <option>Loading clients...</option> : clients.map((c)=>(
-                            <option key={c.id} value={c.id}>{c.nom_complet} - {c.email}</option>
-                        ))}
-                    </select>
-                    <button disabled={!client} onClick={() => setStep(2)}>Suivant</button>
+                    <h2>Sélectionner le client</h2>
+                    <label >Sélectionner un client :</label>
+                    <input list="services"   onChange={(e) => {
+                          const selected = clients.find(
+                            (c) => c.email=== e.target.value
+                          )
+                          if (selected) {
+                            setClient(selected.id) 
+                          }
+                        }} placeholder= {loading ? 'Loading clients...' :'Recherche un client ' }
+                    />
+                    <datalist id='services'>
+                            {clients.map((c)=>(
+                              <option key={c.id} value={c.email}>{c.nom_complet} - {c.nom_societe}</option>
+                          ))}
+                    </datalist>
+                    <button disabled={!client} className='suivant' onClick={() => setStep(2)}>Suivant</button>
                 </div>  )}
 
             {step === 2 && (
@@ -129,18 +138,17 @@ export default function Ajouterabonnements() {
                         prix renouvellement :
                     </label>
                     <input type="number" placeholder="Prix renouvellement" value={prix_renouvellement} onChange={(e) => setPrix_renouvellement(e.target.value)} />
-                    <button onClick={() => setStep(1)}>Retour</button>
-                    <button onClick={()=>Handleclick()}>Suivant</button>
+                    <button onClick={() => setStep(1)} className='retour'>Retour</button>
+                    <button onClick={()=>Handleclick()} className='suivant'>Suivant</button>
                 </div>  )}
 
             {step === 3 && (
                 <div className="card">
                     <h2> Création abonnement :</h2>
                     <div>
-                    <p>Type : {service.type}</p>
-                    <p>Prix initial : {service.prix_initial}</p>
-                    <p>Prix renouvellement : {service.prix_renouvellement}</p>
-                    <hr />
+                    <p>Type : {service.type} </p>
+                    <p>Prix initial : {service.prix_initial} <i>dh</i></p>
+                    <p>Prix renouvellement : {service.prix_renouvellement} <i>dh</i></p>
                     </div>
                     <label htmlFor="">Date debut :</label>
                     <input type="date" value={date_debut} onChange={(e) => setDate_debut(e.target.value)} />
@@ -149,7 +157,7 @@ export default function Ajouterabonnements() {
                         Durée {service.type === "mensuel" ? "en mois" : "en années"} : 
                     </label>
                     <input type="number" placeholder={service.type === "mensuel" ? "Durée en mois" : "Durée en années"} value={duree} onChange={(e) => setDuree(e.target.value)} /> <br />
-                    <button onClick={() => Handleconfirm()}>Confirmation</button>
+                    <button onClick={() => Handleconfirm()} className='confirm'>Confirmation</button>
                 </div>
             )}
         </div>

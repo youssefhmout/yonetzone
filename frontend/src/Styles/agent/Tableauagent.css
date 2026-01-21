@@ -1,16 +1,374 @@
-.tableaudebord{
+/* Tableauagent.css - Ajoutez ces styles */
+
+.tableaudebord {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    
 }
-.tableaudebord .container{
+
+.tableaudebord .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: rgba(44, 103, 67, 0.1);
+    min-height: 100vh;
+    width: 100%;
+    gap: 30px;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Titre section */
+.titre-section {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.titre-section h1 {
+    color: #2c6743;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.mois-courant {
+    color: #666;
+    font-size: 1.1rem;
+    font-style: italic;
+}
+
+/* Cartes de statistiques */
+.cartes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.carte-stat {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carte-stat:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.carte-icone {
+    font-size: 2.5rem;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(44, 103, 67, 0.1);
+}
+
+.revenus-total .carte-icone { background: rgba(255, 193, 7, 0.2); color: #ffc107; }
+.clients-total .carte-icone { background: rgba(33, 150, 243, 0.2); color: #2196f3; }
+.revenus-annuels .carte-icone { background: rgba(76, 175, 80, 0.2); color: #4caf50; }
+.clients-annuels .carte-icone { background: rgba(156, 39, 176, 0.2); color: #9c27b0; }
+
+.carte-contenu {
+    flex: 1;
+}
+
+.carte-contenu h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+.carte-valeur {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #2c6743;
+}
+
+.carte-sousinfo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.carte-sousinfo span {
+    display: block;
+}
+
+/* Contrôles du graphique */
+.graphique-controls {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.graphique-controls h2 {
+    color: #2c6743;
+    margin: 0;
+}
+
+.boutons-type {
+    display: flex;
+    gap: 10px;
+}
+
+.boutons-type button {
+    padding: 10px 20px;
+    border: 2px solid #2c6743;
+    background: white;
+    color: #2c6743;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.boutons-type button.actif {
+    background: #2c6743;
+    color: white;
+}
+
+.boutons-type button:hover {
+    background: rgba(44, 103, 67, 0.1);
+}
+
+/* Graphique section */
+.graphique-section {
+    width: 100%;
+    max-width: 1200px;
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.graphique-container {
+    width: 100%;
+    height: 400px;
+}
+
+/* Tableau section */
+.tableau-section {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.tableau-section h2 {
+    color: #2c6743;
+    margin-bottom: 20px;
+}
+
+.tableau-container {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+.tableau-mensuel {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tableau-mensuel th {
+    background: #2c6743;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.tableau-mensuel td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.tableau-mensuel tr:hover {
+    background: rgba(44, 103, 67, 0.05);
+}
+
+.mois-courant-row {
+    background: rgba(44, 103, 67, 0.1) !important;
+    font-weight: bold;
+}
+
+.badge-courant {
+    background: #ff7300;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    margin-left: 10px;
+}
+
+.valeur-revenus.positif {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.valeur-clients.positif {
+    color: #2196f3;
+    font-weight: bold;
+}
+
+.valeur-revenus.zero,
+.valeur-clients.zero {
+    color: #999;
+}
+
+.valeur-moyenne {
+    color: #9c27b0;
+    font-weight: bold;
+}
+
+.tableau-mensuel tfoot {
+    background: rgba(44, 103, 67, 0.1);
+}
+
+.tableau-mensuel tfoot td {
+    font-weight: bold;
+    padding: 15px;
+}
+
+/* Bouton rafraîchir */
+.bouton-rafraichir {
+    padding: 12px 30px;
+    background: #2c6743;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 20px;
+}
+
+.bouton-rafraichir:hover {
+    background: #235238;
+}
+
+/* États de chargement et erreur */
+.loading, .error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.error {
+    color: #f44336;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .cartes-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .graphique-controls {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .carte-stat {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .tableau-mensuel th,
+    .tableau-mensuel td {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    
+    .titre-section h1 {
+        font-size: 1.8rem;
+    }
+}
+/* jjµ*/
+.carte-stat {
+  border-radius: 16px;
+  padding: 18px;
+  color: #fff;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  background-color: rgba(44, 103, 67, 0.295);
-  height: 100vh;
-  width: 100%;
-  gap: 30px;
+  gap: 16px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+.carte-stat:hover {
+  transform: translateY(-6px);
+}
+
+/* 💰 Revenus total */
+.revenus-total {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+}
+
+/* 📈 Revenus month */
+.revenus-month {
+  background: linear-gradient(135deg, #2563eb, #60a5fa);
+}
+
+/* 👥 Clients */
+.clients-total {
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+}
+
+/* 📋 Tous abonnements */
+.abonnements-total {
+  background: linear-gradient(135deg, #0891b2, #22d3ee);
+}
+
+/* ❌ Abonnements expirés */
+.abonnements-expire {
+  background: linear-gradient(135deg, #dc2626, #f87171);
+}
+
+/* ⏳ Expiring soon */
+.abonnements-bientot {
+  background: linear-gradient(135deg, #ea580c, #fb923c);
+}
+
+/* ICONES */
+.carte-icone {
+  font-size: 2.2rem;
+  opacity: 0.9;
+}
+
+.carte-contenu h3 {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.carte-valeur {
+  font-size: 1.6rem;
+  font-weight: bold;
 }

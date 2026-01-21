@@ -31,8 +31,10 @@ const handleSubmit = async (e) => {
           console.log("Login successful");
           localStorage.setItem('Token', data.access_token);
           if (data.data.role === 'agent') {
-            localStorage.setItem('Data', JSON.stringify(data.data));
             navigate('/agent/tableaudebord');
+          }
+          else {
+            navigate('/admin/tableaudebord');
           }
         } else {
           console.log("Login failed", data.message);

@@ -13,3 +13,79 @@
   width: 100%;
   gap: 30px;
 }
+.Ajouterabonnements h1{
+  margin-top: 20px;
+  color: #2c6743;
+}
+.card{
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  background-color: rgba(255, 255, 255, 0.532);
+  backdrop-filter: blur(10px);
+  padding: 30px 50px;
+  border-radius: 15px;
+}
+.card h2{
+  color: #2c6743;
+}
+.card label  {
+  font-size: 18px;
+  font-weight: 700;
+  color: #3d3c3c;
+  margin-top: 10px ;
+}
+.card select, .card input {
+  width: 300px;
+  height: 35px;
+  border-radius: 8px;
+  outline: none;
+  border:  none;
+  padding: 0 10px;
+  font-size: 14px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.card select:focus, .card input:focus {
+  box-shadow: 0 0 5px rgb(81, 238, 157);
+  border: 1px solid rgb(81, 238, 125);
+}
+.suivant{
+  margin-top: 33px;
+  font-weight: 600;
+  font-size: 17px;
+  width: 250px;
+  height: 35px;
+    border-radius: 8px;
+  background-color: rgb(39, 142, 79);
+  color: white;
+  transition: 0.5s;
+  border: none;
+}
+.retour{
+  margin-top: 33px;
+  font-weight: 600;
+  font-size: 17px;
+  width: 250px;
+  height: 35px;
+    border-radius: 8px;
+  background-color: rgb(255, 165, 0);
+  color: white;
+  transition: 0.5s;
+  border: none;
+}
+.confirm{
+  margin-top: 33px;
+  font-weight: 600;
+  font-size: 17px;
+  width: 250px;
+  height: 35px;
+    border-radius: 8px;
+  background-color: rgb(39, 142, 79);
+  color: white;
+  transition: 0.5s;
+  border: none;
+}
+.card p {
+  margin: 5px 0;
+  font-weight: 500;
+}

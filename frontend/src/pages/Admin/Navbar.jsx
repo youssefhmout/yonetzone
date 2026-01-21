@@ -22,19 +22,16 @@ export default function Navbar() {
         <img src={yonetzone} alt="logo" style={{ width: "60px" }} />
       </div>
 
-      <Link to="/agent/TableauDebord" className={location.pathname === "/agent/TableauDebord" ? "active" : ""}>
+      <Link to="/admin/TableauDebord" className={location.pathname === "/admin/TableauDebord" ? "active" : ""}>
         <AiFillHome />
         Tableau de Bord
       </Link>
-      <Link to="/agent/clients" className={location.pathname === "/agent/clients" ? "active" : ""}>
+      <Link to="/admin/agents" className={location.pathname === "/admin/agents" ? "active" : ""}><FaUserGroup /> Agents</Link>
+      <Link to="/admin/Ajouter/agent" className={location.pathname === "/admin/Ajouter/agent" ? "active" : ""}><BsFillPersonPlusFill />Ajouter un agent</Link>
+      <Link to="/admin/clients" className={location.pathname === "/admin/clients" ? "active" : ""}>
         <FaUserGroup /> Clients
       </Link>
-      <Link to="/agent/Ajouterclient" className={location.pathname === "/agent/Ajouterclient" ? "active" : ""}><BsFillPersonPlusFill />Ajouter un client</Link>
-      <Link to="/agent/abonnements/ajouter" className={location.pathname === "/agent/abonnements/ajouter" ? "active" : ""}><MdAssignmentAdd />Ajouter un abonnement</Link>
-      <Link to="/agent/abonnements" className={location.pathname === "/agent/abonnements" ? "active" : ""}><FaTable />Tous les abonnements</Link>
-      <Link to="/agent/bientot_expires" className={location.pathname === "/agent/bientot_expires" ? "active" : ""}><IoCalendarSharp />Abonnements bientot expirés</Link>
-      <Link to="/agent/expires" className={location.pathname === "/agent/expires" ? "active" : ""}><RiPassExpiredFill />Abonnements expirés</Link>
-
+      <Link to="/admin/abonnements" className={location.pathname === "/admin/abonnements" ? "active" : ""}><FaTable />Tous les abonnements</Link>
       <Link to="/logout" id="Deconnexion">
         <LuLogOut />Déconnexion
       </Link>

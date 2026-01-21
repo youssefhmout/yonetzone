@@ -1,15 +1,189 @@
-.abonnements {
+.abonnements , .infoabonnement{
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
-.abonnements .container{
+.abonnements .container , .infoabonnement .container{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   background-color: rgba(44, 103, 67, 0.295);
   height: 100vh;
+  overflow-y: scroll;
   width: 100%;
   gap: 30px;
+}
+.abonnements h1{
+  margin-top: 20px;
+  color: #2c6743;
+}
+
+
+.filter{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.filter .buttons{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: -10px;
+}
+.filter button{
+  padding: 12px 15px;
+  border: none;
+  outline: none;
+  background-color: #70BF48;
+  color: white;
+  font-weight: bold;
+  border-left: 1px solid rgba(255, 255, 255, 0.295);
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+.filter  .tous{
+  background-color: #70bf48f9;
+}
+.filter  .actifs{
+  background-color: #53843b;
+}
+.filter .bientotq{
+  background-color: #ffa600ce;
+}
+.filter .expires{
+  background-color: #ff0000ba;
+}
+.filter .tous:hover{
+  background-color:  #3f5c31f9;
+}
+.filter  .actifs:hover{
+  background-color: #28521e;
+}
+.filter .bientotq:hover{
+  background-color: #cc8400ce;
+}
+.filter .expires:hover{
+  background-color: #cc0000ba;
+}
+
+.tab {
+  border-spacing: 0px;
+  width: 90%;
+  height: auto;
+  overflow: hidden;
+  animation: view 3s ease-out forwards;
+  box-shadow: 3px 3px  15px rgba(0, 0, 0, 0.644);
+  margin-bottom: 30px;
+}
+.tab th, .tab td {
+  text-align: center;
+}
+@keyframes view {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity : 1;
+  }
+}
+.tab th {
+  background-color: #70bf48c0;
+  color: white;
+  border-top: 1px solid rgba(44, 103, 67, 0.205);
+  border-bottom: 1px solid rgba(44, 103, 67, 0.205);
+  padding: 7px 8px;
+}
+.tab tr:nth-child(even) {
+  background-color: rgba(44, 103, 67, 0.123);
+}
+.tab tr:hover {
+  background-color: rgba(44, 103, 67, 0.295);
+}
+.tab td {
+  background-color: rgba(255, 255, 255, 0.795);
+  border-bottom: 1px solid rgba(44, 103, 67, 0.205);
+  padding: 7px 8px;
+  color: #414141;
+
+}
+
+tr .actif {
+  color: rgb(0, 128, 90);
+  padding: 2px 10px;
+  background-color: rgba(0, 128, 90, 0.123);
+  border-radius: 12px;
+  width: fit-content;
+  font-weight: bold;
+}
+
+tr .expiré {
+  color: red;
+  text-shadow: 0px 0px 10px rgba(255, 0, 0, 0.463);
+  background-color: rgba(255, 0, 0, 0.123);
+  border-radius: 12px;
+  padding: 2px 10px;
+  font-weight: bold;
+}
+
+tr .bientôt {
+  color: orange;
+  text-shadow: 0px 0px 10px rgba(255, 165, 0, 0.463);
+  background-color: rgba(255, 165, 0, 0.123);
+  border-radius: 12px;
+  padding: 2px 10px;
+  font-weight: bold;
+}
+tr td  a.renouvelerlink{
+  color: rgb(0, 128, 75);
+  font-size: 17px;
+  margin-right: 10px;
+  transition: 0.3s ease;
+  background-color: rgba(0, 128, 58, 0.208) ;
+  padding: 3px 9px;
+  border-radius: 5px ;
+}
+tr td  a.renouvelerlink:hover{
+  background-color: rgba(0, 128, 58, 0.432) ;
+}
+tr td  a.info{
+  color: rgb(0, 102, 204);
+  font-size: 17px;
+  transition: 0.3s ease;
+  background-color: rgba(0, 102, 204, 0.208) ;
+  padding: 3px 9px;
+  border-radius: 5px ;
+}
+tr td  a.info:hover{
+  background-color: rgba(0, 102, 204, 0.432) ;
+}
+/* information de la abonnement par client  */
+
+.infoabonnement h1 {
+  color: #047f39;
+}
+.infoabonnement .elements .card{
+  border-left: 4px solid green;
+  border-right: 4px solid rgb(107, 0, 128);
+  border-radius: 20px;
+  width: 400px;
+  margin: 10px;
+  box-shadow: 0px 0px 3px black;
+}
+.infoabonnement .elements h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #18b359, #661daf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+
+}
+.infoabonnement .elements #active{
+  background-color: #18b35915;
+}
+.infoabonnement .elements #expire{
+  background-color: #b41d1d17;
 }

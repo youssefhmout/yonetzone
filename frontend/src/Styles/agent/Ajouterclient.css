@@ -1,9 +1,9 @@
-.Ajouterclient {
+.Ajouterclient , .renouveler {
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
-.Ajouterclient .container{
+.Ajouterclient .container , .renouveler .container{
   display: flex;
   flex-direction: column;
   align-items: center;

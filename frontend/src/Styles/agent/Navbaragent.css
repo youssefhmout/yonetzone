@@ -44,8 +44,8 @@
 }
 
 .nav a:hover ,  .nav a.active {
-    border-left: 3px solid  rgb(43, 226, 110);
-    background-color: rgba(43, 226, 110, 0.349);
+    border-left: 3px solid  #70BF48;
+    background-color: #70bf4881;
     color: aliceblue;
 }
 

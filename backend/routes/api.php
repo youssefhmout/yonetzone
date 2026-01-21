@@ -30,3 +30,10 @@ Route::post('/agent/ajouterabonnement' , [AbonnementsController::class,'Storeabo
 
 
 Route::get('/agent/abonnements' , [AbonnementsController::class,'abonnementsByUser' ])->middleware('auth:sanctum') ;
+Route::post('/agent/abonnement/renouveler' , [AbonnementsController::class,'renouveler' ])->middleware('auth:sanctum') ;
+
+Route::post('/agent/abonnements/client' , action: [AbonnementsController::class,'getAbonnementsclient' ])->middleware('auth:sanctum') ;
+
+//benefices
+
+Route::get('/agent/benefices' , [AbonnementsController::class, 'benefices'])->middleware('auth:sanctum') ;

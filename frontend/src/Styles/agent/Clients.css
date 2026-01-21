@@ -10,7 +10,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background-color: rgba(44, 103, 67, 0.295);
+  background-color:rgba(44, 103, 67, 0.295);
   height: 100vh;
   width: 100%;
   gap: 30px;
@@ -19,7 +19,7 @@
   display: flex;
   flex-direction: row;
   gap: 10px;
-  border: 2px solid rgba(13, 124, 78, 0.918);
+  border: 2px solid #70BF48;
   border-radius: 25px;
 
 }
@@ -31,23 +31,27 @@
   width: 250px;
   font-weight: 600;
   letter-spacing: 1px;
-  color: rgb(13, 124, 78);
+  color: #53843b;
 }
 .search .icon{
   padding: 3px 12px;
   border: none;
   outline: none;
   background-color:transparent;
-  color:  rgba(13, 124, 78, 0.797);
+  color: #70BF48;
 }
 
-.clients .container .table{
+
+.clients .container .table {
   border-spacing: 0px;
   width: 90%;
   height: auto;
-  border-radius: 15px;
   overflow: hidden;
   animation: view 3s ease-out forwards;
+  box-shadow: 3px 3px  10px rgba(0, 0, 0, 0.644);
+}
+.table th, .table td {
+  text-align: center;
 }
 @keyframes view {
   0% {
@@ -57,33 +61,31 @@
     opacity : 1;
   }
 }
-.table th, .table td{
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-  width: fit-content;
-  padding: 8px 12px;
-}
 .table th {
-  background-color: rgb(44, 108, 83);
-  color: rgb(201, 201, 201);
-  font-weight: 700;
+  background-color: #70bf48af;
+  color: white;
+  border-top: 1px solid rgba(44, 103, 67, 0.205);
+  border-bottom: 1px solid rgba(44, 103, 67, 0.205);
+  padding: 7px 8px;
 }
-.table tr:nth-child(odd) {
-  background: rgb(196, 214, 207);
-  color: rgb(0, 101, 54);
-  font-weight: 600;
-}
-
 .table tr:nth-child(even) {
-  background: rgb(154, 192, 176);
-  color: rgb(0, 82, 44);
-  font-weight: 600;
-} 
+  background-color: rgba(44, 103, 67, 0.123);
+}
+.table  tr:hover {
+  background-color: rgba(44, 103, 67, 0.295);
+}
+.table td {
+  background-color: rgba(255, 255, 255, 0.795);
+  border-bottom: 1px solid rgba(44, 103, 67, 0.205);
+  padding: 7px 8px;
+  color: #414141;
+
+}
 .table .actions{
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  gap: 10px;
+  justify-content:center;
+  gap: 6px;
 }
 .table .actions .edit{
   background-color: rgba(41, 167, 114, 0.384);
@@ -102,22 +104,7 @@
 .table .actions .deleteclient a{
   color: rgb(161, 25, 25);
 }
-.table .Actif{
-  color: rgb(0, 128, 81);
-  background-color: rgba(0, 128, 58, 0.306);
-  font-weight: 700;
-  padding: 3px 15px;
-  border-radius: 10px;
-  width: fit-content;
-}
-.table .Inactif{
-  color: rgb(159, 7, 7);
-  background-color: rgba(255, 0, 0, 0.253);
-  font-weight: 700;
-  padding: 3px 10px;
-  border-radius: 10px;
-  width: fit-content;
-}
+
 
 
 /* Modal Client Details */
