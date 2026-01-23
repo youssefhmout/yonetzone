@@ -2,18 +2,20 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     position: relative;
 }
 .clients .container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  background-color:rgba(44, 103, 67, 0.295);
-  height: 100vh;
-  width: 100%;
-  gap: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: rgba(44, 103, 67, 0.1);
+    min-height: 100vh;
+    width: 100%;
+    gap: 30px;
+    padding: 20px;
+    overflow-y: auto;
 }
 .search{
   display: flex;
@@ -48,7 +50,7 @@
   height: auto;
   overflow: hidden;
   animation: view 3s ease-out forwards;
-  box-shadow: 3px 3px  10px rgba(0, 0, 0, 0.644);
+
 }
 .table th, .table td {
   text-align: center;
@@ -62,10 +64,9 @@
   }
 }
 .table th {
-  background-color: #70bf48af;
-  color: white;
-  border-top: 1px solid rgba(44, 103, 67, 0.205);
-  border-bottom: 1px solid rgba(44, 103, 67, 0.205);
+  background-color: #70bf4800;
+  color: rgb(20, 100, 63);
+  border-bottom: 2px solid rgba(44, 103, 67, 0.205);
   padding: 7px 8px;
 }
 .table tr:nth-child(even) {
@@ -76,7 +77,6 @@
 }
 .table td {
   background-color: rgba(255, 255, 255, 0.795);
-  border-bottom: 1px solid rgba(44, 103, 67, 0.205);
   padding: 7px 8px;
   color: #414141;
 

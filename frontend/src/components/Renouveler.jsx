@@ -36,7 +36,6 @@ export default function Renouveler({abonnement , setRenouvelerModal , setRefresh
             <button className='close-btn' onClick={() => setRenouvelerModal(false)}>
                 <MdOutlineClose />
             </button>
-
             <h2>Renouveler l'abonnement</h2>
             <div className='details'>
                 <p><strong>Client:</strong> {abonnement.client.nom_complet}</p>

@@ -1,5 +1,6 @@
 import React from 'react' ;
 import Navbar from './Navbar';
+import * as XLSX from "xlsx";
 import "../../Styles/agent/Abonnements.css"  ;
 import Renouveler from '../../components/Renouveler';
 
@@ -57,6 +58,26 @@ export default function Abonnements() {
 
   );
 
+  const exportToExcel=()=>{
+        const data = filteredAbonnements.map((abonnement) => ({
+          "#Id" :abonnement.service.id ,
+          "Nom complet": abonnement.client.nom_complet,
+          "Nom societe " : abonnement.client.nom_societe,
+          "Email": abonnement.client.email,
+          "Type l'abonnement":abonnement.service.type,
+          "Date fine " : abonnement.date_fin ,
+          "prix Total" : abonnement.prix_unitaire * abonnement.duree  
+        }));
+
+        const worksheet = XLSX.utils.json_to_sheet(data);
+        const workbook = XLSX.utils.book_new();
+
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Abonnements");
+        XLSX.writeFile(workbook, "abonnements.xlsx");
+
+
+  }
+
 
 
   return (
@@ -77,6 +98,12 @@ export default function Abonnements() {
               <button className='bientotq' onClick={() => (setSearch("expire bientôt") , setclean(''))}>Abonnements Expire Bientôt</button>
               <button className='expires' onClick={() => (setSearch("expiré") , setclean(''))}>Abonnements Expirés</button>
           </div>
+      </div>
+      <div className='excel'>
+        <button onClick={exportToExcel} className="btn-export">
+          Exporter Excel
+        </button>
+
       </div>
 
         <table className='tab'>

@@ -4,13 +4,17 @@ use App\Http\Controllers\Auth\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController ;
 use App\Http\Controllers\AbonnementsController ;
+use App\Http\Controllers\beneficesController;
 use Illuminate\Container\Attributes\Auth;
 
-Route::post('/agent/ajouter' , [UserController::class,'Store' ]) ;
+Route::post('/agent/ajouter' , [UserController::class,'Store' ])->middleware('auth:sanctum');
+Route::get('/agents' , [UserController::class,'getAgents' ])->middleware('auth:sanctum');
 
 Route::post('/connexion' , [UserController::class,'Login' ]);
 Route::post('/agent/ajouterclient' , [ClientController::class,'Store' ])->middleware('auth:sanctum') ;
 Route::get('/agent/clients' , [ClientController::class,'clientsByUser' ])->middleware('auth:sanctum') ;
+Route::get('/role' , [UserController::class, 'getrole'])->middleware('auth:sanctum') ;
+
 
 Route::get('/agent/client/{id}' , [ClientController::class,'getClientById' ])->middleware('auth:sanctum') ;
 
@@ -36,4 +40,4 @@ Route::post('/agent/abonnements/client' , action: [AbonnementsController::class,
 
 //benefices
 
-Route::get('/agent/benefices' , [AbonnementsController::class, 'benefices'])->middleware('auth:sanctum') ;
+Route::get('/agent/benefices' , [beneficesController::class, 'benefices'])->middleware('auth:sanctum') ;

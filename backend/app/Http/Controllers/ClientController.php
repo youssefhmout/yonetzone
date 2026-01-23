@@ -77,7 +77,13 @@ class ClientController extends Controller
     public function clientsByUser()
     {
         $userId = Auth::id();
-        $clients = Client::where('user_id', $userId)->get();
+        $userRole = Auth::user()->role;
+        if ($userRole =='agent'){
+            $clients = Client::where('user_id', $userId)->get();
+        }
+        else {
+            $clients = Client::All() ;
+        }
 
         return response()->json([
             'message' => 'Clients retrieved successfully',

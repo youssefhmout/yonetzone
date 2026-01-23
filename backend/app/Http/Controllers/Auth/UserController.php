@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -15,6 +16,9 @@ class UserController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
+        if (Auth::user()->role !='admin'){
+            return response()->json(['message'=>'unauthorized']) ;
+        }
         $existingAdmin = User::where('email', $request->email)->first();
         if($existingAdmin){
             return response()->json(['message' =>'Email already exists' ]) ;
@@ -50,5 +54,26 @@ class UserController extends Controller
         'token_type' => 'Bearer'
     ], 200);
 }
+
+    function getAgents (Request $request){
+        if (Auth::user()->role !='admin'){
+            return response()->json(['message'=>'unauthorized']) ;
+        }
+        $users = User::where('role', 'agent')
+                    ->select('id','name','email','created_at')
+                    ->get();
+
+        return response()->json(['agents' => $users]);
+
+    }
+
+    function  getrole (Request $request){
+
+        $userRole = User::where('id', Auth::id())
+        ->select('role')
+        ->first();
+
+        return response()->json($userRole);
+    }
 
 }
