@@ -7,6 +7,7 @@ import { BsFillPersonPlusFill } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
 import { FaTable } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { FaUserCircle } from "react-icons/fa";
 
 import { useLocation } from "react-router-dom";
 import "../../Styles/agent/Navbaragent.css";
@@ -14,8 +15,9 @@ import "../../Styles/agent/Navbaragent.css";
 import { useState  , useEffect} from "react";
 import { Link } from "react-router-dom";
 export default function Navbar() {
-  const [role , setrole]=useState('')
-
+  const [role , setrole]=useState('') ;
+  const [name , setname]= useState('')
+  
     const location = useLocation();
     const navigate = useNavigate()
 
@@ -35,6 +37,8 @@ export default function Navbar() {
     })
       .then(res => res.json())
       .then(data => {
+        setrole(data.role) ;
+        setname(data.name)
         if (data.role !== 'admin') {
           navigate('/', { replace: true })
         }
@@ -43,15 +47,23 @@ export default function Navbar() {
         console.error("Erreur role:", error)
         navigate('/login')
       })
-  }, [location.pathname, navigate])
+  }, [])
 
 
   
   return (
     <nav className="nav">
-      <div className="image">
-        <img src={yonetzone} alt="logo" style={{ width: "60px" }} />
-      </div>
+            <div className="image" style={{'display' : 'flex' , 'flexDirection' :'column' , 'color' : 'white' }}>
+              <div>
+                <FaUserCircle className="icons"/>
+              </div>
+              <div className="namelogo">
+                {name}
+              </div>
+              <div className="role">
+                {role}
+              </div>
+            </div>
 
       <Link to="/admin/TableauDebord" className={location.pathname === "/admin/TableauDebord" ? "active" : ""}>
         <AiFillHome />

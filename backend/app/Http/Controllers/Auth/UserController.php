@@ -69,11 +69,64 @@ class UserController extends Controller
 
     function  getrole (Request $request){
 
-        $userRole = User::where('id', Auth::id())
-        ->select('role')
+        $user= User::where('id', Auth::id())
+        ->select('role' , 'name')
         ->first();
 
-        return response()->json($userRole);
+        return response()->json($user);
+    }
+
+
+    public function modifieruser(Request $request)
+    {
+        if (Auth::user()->role !== 'admin') {
+            return response()->json(['message' => 'unauthorized'], 403);
+        }
+
+        $request->validate([
+            'id'    => 'required|exists:users,id',
+            'name'  => 'required|string',
+            'email' => 'required|email',
+            'password' => 'nullable|min:6',
+        ]);
+
+        $user = User::find($request->id);
+
+        if (!$user) {
+            return response()->json(['message' => "agent n'existe pas"], 404);
+        }
+
+        $data = $request->only(['name', 'email']);
+
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->password);
+        }
+
+        $user->update($data);
+
+        return response()->json([
+            'message' => 'agent est modifié avec succès'
+        ], 200);
+    }
+    function supprimeruser($id)
+    {
+        $userId = Auth::id();
+        if (Auth::user()->role !== 'admin') {
+            return response()->json(['message' => 'unauthorized'], 403);
+        }
+        $user = User::where('id', $id)->first();
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'agent not found'
+            ], 404);
+        }
+
+        $user->delete();
+
+        return response()->json([
+            'message' => 'agent deleted successfully'
+        ], 200);
     }
 
 }

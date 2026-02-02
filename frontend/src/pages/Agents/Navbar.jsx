@@ -8,6 +8,7 @@ import { IoCalendarSharp } from "react-icons/io5";
 import { RiPassExpiredFill } from "react-icons/ri";
 import { MdAssignmentAdd } from "react-icons/md";
 import { FaTable } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 
 import { useLocation } from "react-router-dom";
 import "../../Styles/agent/Navbaragent.css";
@@ -16,38 +17,57 @@ import { useState , useEffect } from "react";
 import { Link } from "react-router-dom";
 export default function Navbar() {
   const location = useLocation();
-  
-  const navigate = useNavigate()
+  const  [name , setname]= useState('') ;
+  const [role , setrole]=useState('') ;
+  const navigate = useNavigate() ;
 
-  useEffect(() => {
-    const token = localStorage.getItem("Token")
 
-    if (!token) {
-      navigate('/login')
-      return
-    }
+useEffect(() => {
+  const token = localStorage.getItem("Token");
 
-    fetch("http://127.0.0.1:8000/api/role", {
-      headers: {
-        "Accept": "application/json",
-        "Authorization": `Bearer ${token}`
+  if (!token) {
+    navigate("/login", { replace: true });
+    return;
+  }
+
+  const fetchRole = async () => {
+    try {
+      const res = await fetch("http://127.0.0.1:8000/api/role", {
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await res.json();
+      setname(data.name);
+      setrole(data.role);
+
+      // Redirect إذا مش agent
+      if (data.role !== "agent") {
+        navigate("/", { replace: true });
       }
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.role !== 'agent') {
-          navigate('/', { replace: true })
-        }
-      })
-      .catch(error => {
-        console.error("Erreur role:", error)
-        navigate('/login')
-      })
-  }, [location.pathname, navigate])
+    } catch (error) {
+      console.error("Erreur role:", error);
+      navigate("/", { replace: true });
+    }
+  };
+
+  fetchRole();
+}, []); // 🔹 empty array → run once on mount
+
   return (
     <nav className="nav">
-      <div className="image">
-        <img src={yonetzone} alt="logo" style={{ width: "40px" }} />
+      <div className="image" style={{'display' : 'flex' , 'flexDirection' :'column' , 'color' : 'white' }}>
+        <div>
+          <FaUserCircle className="icons"/>
+        </div>
+        <div className="namelogo">
+          {name}
+        </div>
+        <div className="role">
+          {role}
+        </div>
       </div>
 
       <Link to="/agent/TableauDebord" className={location.pathname === "/agent/TableauDebord" ? "active" : ""}>

@@ -78,20 +78,23 @@ export default function Abonnements() {
 
   }
 
-
-
   return (
     <article className='abonnements'>
       <Navbar/>
       <div className='container'>
         <h1>Liste des abonnements</h1>
         <div  className='filter'>
+          <div style={{'display' : 'flex' ,  'gap' : '10px'} }>
             <div className='search'>
                 <div className='icon'>
                 <FaSearch  />
                 </div>
                 <input type="text" value={clean} placeholder='Rechercher...' onChange={(e)=>(setSearch(e.target.value), setclean(e.target.value))} />
             </div>
+                <button onClick={exportToExcel} className="btn-export">
+                  Exporter Excel
+                </button>
+          </div>
           <div className='buttons'>
               <button className='tous' onClick={() =>( setSearch('') , setclean(''))}>Tous les Abonnements</button>
               <button className='actifs' onClick={() => (setSearch("actif") , setclean(''))}>Abonnements Actifs</button>
@@ -99,13 +102,6 @@ export default function Abonnements() {
               <button className='expires' onClick={() => (setSearch("expiré") , setclean(''))}>Abonnements Expirés</button>
           </div>
       </div>
-      <div className='excel'>
-        <button onClick={exportToExcel} className="btn-export">
-          Exporter Excel
-        </button>
-
-      </div>
-
         <table className='tab'>
             <thead>
                 <tr> 

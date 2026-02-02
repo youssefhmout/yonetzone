@@ -7,14 +7,15 @@ import { Link } from 'react-router-dom';
 import { FaSearch } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-
+import Modalmodifier from '../../components/Modalmodifier';
+import Modalsupprimer from './Modalsupprimer';
 export default function Agents() {
   const [search , setSearch] = useState("");
-  const [ModalclientOpen , setModalclientOpen] = useState(false);
+  const [Modalagentopen , setModalagentOpen] = useState(false);
   const [data , setData] = useState([]);
   const [loading , setLoading] = useState(true);
   const [modalesupprimer , setmodalesupprimer] = useState(false);
-
+  const [agent , setAgent]=useState('') ; 
 
   useEffect(() => {
     const token = localStorage.getItem("Token");
@@ -35,7 +36,7 @@ export default function Agents() {
     .catch(error => {
       console.error("Erreur lors de la récupération des clients:", error);
     });
-  }, [ModalclientOpen , modalesupprimer]);
+  }, [Modalagentopen , modalesupprimer]);
 
   const filteredagents = data.filter((agent) =>
      agent.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -72,21 +73,19 @@ export default function Agents() {
                               <div className='edit'>
                                   <a href="#" onClick={(e) =>{
                                       e.preventDefault();
-                                      setModalclientOpen(true);
-                                      setClient(client);
+                                      setModalagentOpen(true);
+                                      setAgent(agent);
                                     }}
                                   ><FaEdit /></a>
                               </div>
                               <div className='deleteclient'>
                                   <a href="#" onClick={(e) => {
                                       e.preventDefault();
-                                      setClient(client);
+                                      setAgent(agent);
                                       setmodalesupprimer(true);
-
                                     } }>
                                     <MdDelete />
                                 </a>
-
                               </div>
                               </td>
                         </tr>
@@ -95,10 +94,10 @@ export default function Agents() {
             </table> )}
 
             {/* Modal Client Details */}
-            {ModalclientOpen && (
-              <div className='modalclient'>
+            {Modalagentopen && (
+              <div className='modalagent'>
                 <div className='modalcontent'>
-                  <Modalclient client={client} setModalclientOpen={setModalclientOpen} />
+                  <Modalmodifier agent={agent} setModalagentOpen={setModalagentOpen} />
                 </div>
               </div>
             )}
@@ -106,7 +105,7 @@ export default function Agents() {
           {/* Modal Supprimer Client */}
           {modalesupprimer && (
             <div className='modalesupprimer'>
-              <Modalsupprimer client={client} setmodalesupprimer={setmodalesupprimer} />
+              <Modalsupprimer agent={agent} setmodalesupprimer={setmodalesupprimer} />
             </div>
           )}
           {/* End Modal Supprimer Client */}

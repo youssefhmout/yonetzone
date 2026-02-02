@@ -9,6 +9,10 @@ use Illuminate\Container\Attributes\Auth;
 
 Route::post('/agent/ajouter' , [UserController::class,'Store' ])->middleware('auth:sanctum');
 Route::get('/agents' , [UserController::class,'getAgents' ])->middleware('auth:sanctum');
+Route::get('/agents' , [UserController::class,'getAgents' ])->middleware('auth:sanctum');
+Route::post('/agent/modifier' , [UserController::class,'modifieruser' ])->middleware('auth:sanctum');
+Route::delete('/agent/supprimer/{id}' , [UserController::class,'supprimeruser' ])->middleware('auth:sanctum') ;
+
 
 Route::post('/connexion' , [UserController::class,'Login' ]);
 Route::post('/agent/ajouterclient' , [ClientController::class,'Store' ])->middleware('auth:sanctum') ;

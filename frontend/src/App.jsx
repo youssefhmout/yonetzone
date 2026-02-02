@@ -10,6 +10,7 @@ import Abonnements from './pages/Agents/Abonnements';
 import Logout from './components/logout'
 import Infoabonnement from './pages/Agents/Infoabonnement'; 
 // ////////////////////////////////////////////////////////////
+import yonetzone from "./assets/yonetzone1.png";
 import TableauDebordadmin from './pages/Admin/TableauDebordadmin';
 import Agents from './pages/Admin/Agents';
 import Ajouteragent from './pages/Admin/Ajouteragent';
@@ -19,6 +20,9 @@ import Abonnementsad from './pages/Admin/Abonnementsad';
 export default function App() {
   return (
     <>
+        <div className="logo">
+        <img src={yonetzone} alt="logo" style={{ width: "50px" }} />
+        </div>
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Login/>} />

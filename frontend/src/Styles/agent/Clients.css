@@ -17,12 +17,16 @@
     padding: 20px;
     overflow-y: auto;
 }
+.clients h1{
+  margin-top: 20px;
+  color: #2c6743;
+}
 .search{
   display: flex;
   flex-direction: row;
   gap: 10px;
-  border: 2px solid #70BF48;
-  border-radius: 25px;
+  border: 2px solid #70bf48a7;
+  border-radius: 10px;
 
 }
 .search input{
@@ -64,13 +68,18 @@
   }
 }
 .table th {
-  background-color: #70bf4800;
-  color: rgb(20, 100, 63);
+  background-color: #6868681d;
+  color: rgba(20, 100, 63, 0.621);
   border-bottom: 2px solid rgba(44, 103, 67, 0.205);
   padding: 7px 8px;
 }
+.table tr {
+    font-weight: 600;
+}
 .table tr:nth-child(even) {
   background-color: rgba(44, 103, 67, 0.123);
+
+  
 }
 .table  tr:hover {
   background-color: rgba(44, 103, 67, 0.295);
@@ -108,7 +117,7 @@
 
 
 /* Modal Client Details */
-.modalclient{
+.modalclient  ,  .modalagent{
   position: fixed;
   top: 0;
   left: 0;
@@ -120,7 +129,7 @@
   align-items: center;
   z-index: 1000;
 }
-.modalclient .modalcontent{
+.modalclient .modalcontent {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
@@ -294,3 +303,37 @@
   transition: 0.5s;
   border: none;
 }
+
+ .modalagent .modalcontent  {
+  width: 40%;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+ }
+  .modalagent .modalcontent  form h1{
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .modalagent .modalcontent  form{
+    position: relative;
+  }
+
+  .modalagent .close-btn {
+    background-color: transparent;
+    color: black;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 40px;
+    font-size: 22px;
+  }
+
+  .modalagent .nn:hover{
+    background-color: transparent;
+    box-shadow: none;
+
+    color: red;
+  }
